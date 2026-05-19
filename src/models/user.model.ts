@@ -36,7 +36,7 @@ userSchema.methods.comparePassword = async function (
 
 // Exclude password from JSON output by default
 userSchema.set('toJSON', {
-  transform: (_doc, ret) => {
+  transform: (_doc, ret: { password?: string }) => {
     delete ret.password;
     return ret;
   },

@@ -14,7 +14,7 @@ interface PaginationMeta {
 export const sendSuccess = <T>(
   res: Response,
   data: T,
-  statusCode = HTTP.OK,
+  statusCode: number = HTTP.OK,
   message = 'Success'
 ) => {
   return res.status(statusCode).json({ success: true, message, data });
@@ -31,7 +31,7 @@ export const sendPaginated = <T>(
 export const sendError = (
   res: Response,
   message: string,
-  statusCode = HTTP.INTERNAL_SERVER_ERROR,
+  statusCode: number = HTTP.INTERNAL_SERVER_ERROR,
   errors?: unknown
 ) => {
   return res.status(statusCode).json({ success: false, message, errors });
