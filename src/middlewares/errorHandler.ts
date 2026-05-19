@@ -4,6 +4,7 @@ import { AppError } from '../utils/AppError';
 import { sendError } from '../utils/response';
 import { HTTP } from '../utils/httpStatus';
 import { config } from '../config';
+import logger from '../utils/logger';
 
 // Single error-handling middleware for the entire app.
 // Order matters: more specific error types first.
@@ -27,7 +28,7 @@ export const errorHandler = (
   }
 
   // Unknown errors: log in dev, hide details in prod
-  console.error('💥 Unhandled error:', err);
+  logger.error('Unhandled error', { message: err.message, stack: err.stack });
   sendError(
     res,
     config.isDev ? err.message : 'Internal server error',
